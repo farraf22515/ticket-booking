@@ -3,8 +3,19 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   devtools: { enabled: true },
   ssr: true,
-  nitro: {
-    preset: "node",
+  // nitro: {
+  //   preset: "node",
+  // },
+
+  app: {
+    head: {
+      title: "Portfolio Website",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        { name: "description", content: "My Vue.js Portfolio Website" },
+      ],
+    },
   },
   modules: [
     "@nuxt/content",

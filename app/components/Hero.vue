@@ -10,13 +10,12 @@
 
 <script>
 export default {
-  name: 'Hero'
-}
+  name: "Hero",
+};
 </script>
 
 <style scoped>
 .hero {
-  background-image: url('@/assets/images/hero-bg.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;

@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <p>Hello world</p>
     <Header />
     <Hero />
     <About />
