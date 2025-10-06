@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - pichet-port
+name: Build and deploy Node.js app to Azure Web App - test-deploy
 
 on:
   push:
@@ -21,18 +21,13 @@ jobs:
       - name: Set up Node.js version
         uses: actions/setup-node@v3
         with:
-          node-version: "22.x"
-
-      - name: Install Bun
-        run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "BUN_INSTALL=\"$HOME/.bun\"" >> $GITHUB_ENV
-          echo "$HOME/.bun/bin" >> $GITHUB_PATH
+          node-version: '22.x'
 
       - name: npm install, build, and test
         run: |
-          bun install
-          bun run build --if-present
+          npm install
+          npm run build --if-present
+          npm run test --if-present
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
@@ -52,18 +47,19 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
-
+      
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_4420A3A60D4E4A79A75C7CB42C72F1FC }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_3AB227B74FDD4E6FA067F9496F6CA07F }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_238C05DE070040A188C7A7E929C8FA5B }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_8843DD87546D4AA9AAC02900A8879F0D }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_FDB919FD1CF44EA485CB9C2CAE174E98 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_3F8C7530E3B94F6C9E794BEF5854E79A }}
 
-      - name: "Deploy to Azure Web App"
+      - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: "pichet-port"
-          slot-name: "Production"
+          app-name: 'test-deploy'
+          slot-name: 'Production'
           package: .
+          
